@@ -25,14 +25,14 @@
 
     async function fetchApp() {
       if (!appId) return;
-      const res = await fetch(`http://localhost:5000/api/apps/${appId}`);
+      const res = await fetch(`https://zlulri-app-prototype.onrender.com/api/apps/${appId}`);
       const app = await res.json();
       document.getElementById('app-name').textContent = app.name;
       document.getElementById('app-desc').textContent = app.description;
       document.getElementById('app-category').textContent = 'Category: ' + app.category;
 
       document.getElementById('request-btn').addEventListener('click', async () => {
-        const response = await fetch('http://localhost:5000/api/requests', {
+        const response = await fetch('https://zlulri-app-prototype.onrender.com/api/requests', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: '1', appId: app._id, status: 'Pending' })
