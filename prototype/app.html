@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Details</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Zluri Catalog</div>
+    <nav class="nav"><a href="index.html">Back to Catalog</a></nav>
+  </header>
+
+  <main class="container">
+    <h2 id="app-name">App Name</h2>
+    <p id="app-desc">App description goes here.</p>
+    <p id="app-category">Category: </p>
+    <button id="request-btn">Request Access</button>
+  </main>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const appId = urlParams.get('id');
+
+    async function fetchApp() {
+      if (!appId) return;
+      const res = await fetch(`http://localhost:5000/api/apps/${appId}`);
+      const app = await res.json();
+      document.getElementById('app-name').textContent = app.name;
+      document.getElementById('app-desc').textContent = app.description;
+      document.getElementById('app-category').textContent = 'Category: ' + app.category;
+
+      document.getElementById('request-btn').addEventListener('click', async () => {
+        const response = await fetch('http://localhost:5000/api/requests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: '1', appId: app._id, status: 'Pending' })
+        });
+        const data = await response.json();
+        alert(data.message);
+      });
+    }
+
+    fetchApp();
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; }
+.topbar { background: #0f4c81; color: white; padding: 1rem; display: flex; justify-content: space-between; }
+.container { padding: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+.app-card { border: 1px solid #ccc; padding: 1rem; border-radius: 12px; background: #fff; transition: transform 0.2s, box-shadow 0.2s; }
+.app-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+a.details { display: inline-block; margin-top: 0.5rem; color: #0f4c81; text-decoration: none; font-weight: bold; }
+a.details:hover { text-decoration: underline; }
+.filter-bar { margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+#categoryFilter, #myAppsBtn { padding: 0.5rem 1rem; border-radius: 5px; border: 1px solid #ccc; cursor: pointer; transition: all 0.2s; }
+#myAppsBtn:hover { background-color: #0f4c81; color: white; }
+button.request-btn { margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 5px; border: none; background-color: #0f4c81; color: white; cursor: pointer; transition: all 0.2s; }
+button.request-btn.pending { background-color: #999; cursor: default; }
+button.request-btn:hover:not(.pending) { background-color: #08406a; }

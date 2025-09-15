@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee App Catalog</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Zluri Catalog</div>
+  </header>
+
+  <main class="container">
+    <h1>Available Applications</h1>
+    <div class="filter-bar">
+      <label for="categoryFilter">Filter by Category:</label>
+      <select id="categoryFilter">
+        <option value="">All</option>
+        <option value="Communication">Communication</option>
+        <option value="Productivity">Productivity</option>
+        <option value="Development">Development</option>
+        <option value="Sales">Sales</option>
+      </select>
+      <button id="myAppsBtn">My Apps</button>
+    </div>
+
+    <div id="app-grid" class="grid"></div>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
