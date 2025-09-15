@@ -9,7 +9,9 @@
 <body>
   <header class="topbar">
     <div class="logo">Zluri Catalog</div>
-    <nav class="nav"><a href="index.html">Back to Catalog</a></nav>
+    <nav class="nav">
+      <button id="backBtn">Back to Catalog</button>
+    </nav>
   </header>
 
   <main class="container">
@@ -25,13 +27,35 @@
 
     async function fetchApp() {
       if (!appId) return;
+
+      // fetch app details
       const res = await fetch(`https://zlulri-app-prototype.onrender.com/api/apps/${appId}`);
       const app = await res.json();
+
       document.getElementById('app-name').textContent = app.name;
       document.getElementById('app-desc').textContent = app.description;
       document.getElementById('app-category').textContent = 'Category: ' + app.category;
 
-      document.getElementById('request-btn').addEventListener('click', async () => {
+      const requestBtn = document.getElementById('request-btn');
+
+      // check if already requested
+      const reqRes = await fetch(`https://zlulri-app-prototype.onrender.com/api/requests?userId=1`);
+
+      const requests = await reqRes.json();
+      const existingRequest = requests.find(r => r.appId === app._id && r.status === "Pending");
+
+      if (existingRequest) {
+        requestBtn.textContent = "Pending";
+        requestBtn.disabled = true;
+      }
+
+      // back button
+      document.getElementById('backBtn').addEventListener('click', () => {
+        window.location.href = 'index.html';
+      });
+
+      // request button
+      requestBtn.addEventListener('click', async () => {
         const response = await fetch('https://zlulri-app-prototype.onrender.com/api/requests', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -39,6 +63,10 @@
         });
         const data = await response.json();
         alert(data.message);
+
+        // update UI immediately
+        requestBtn.textContent = "Pending";
+        requestBtn.disabled = true;
       });
     }
 

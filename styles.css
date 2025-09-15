@@ -12,3 +12,17 @@ a.details:hover { text-decoration: underline; }
 button.request-btn { margin-top: 0.5rem; padding: 0.5rem 1rem; border-radius: 5px; border: none; background-color: #0f4c81; color: white; cursor: pointer; transition: all 0.2s; }
 button.request-btn.pending { background-color: #999; cursor: default; }
 button.request-btn:hover:not(.pending) { background-color: #08406a; }
+#backBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #0f4c81;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+#backBtn:hover {
+  background-color: #0d3a63;
+}
