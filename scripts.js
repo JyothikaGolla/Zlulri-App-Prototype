@@ -8,14 +8,14 @@ let requestedAppIds = [];
 
 // Fetch all apps
 async function fetchApps() {
-  const res = await fetch('http://localhost:5000/api/apps');
+  const res = await fetch('https://zlulri-app-prototype.onrender.com/api/apps');
   allApps = await res.json();
   renderApps(allApps);
 }
 
 // Fetch user requests
 async function fetchMyRequests() {
-  const res = await fetch('http://localhost:5000/api/requests?userId=1');
+  const res = await fetch('https://zlulri-app-prototype.onrender.com/api/requests?userId=1');
   const requests = await res.json();
   requestedAppIds = requests.map(r => r.appId);
 }
@@ -39,7 +39,7 @@ function renderApps(apps) {
     // Only attach click if not pending
     if (!isRequested) {
       node.querySelector('.request-btn').addEventListener('click', async () => {
-        const res = await fetch('http://localhost:5000/api/requests', {
+        const res = await fetch('https://zlulri-app-prototype.onrender.com/api/requests', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId: '1', appId: a._id, status: 'Pending' })
